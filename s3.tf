@@ -16,14 +16,14 @@ module "s3_bucket" {
   user_enabled        = each.value.create_s3_user
   versioning_enabled  = each.value.versioning_enabled
   sse_algorithm       = each.value.sse_algorithm
-  ssm_base_path       = "/${local.bucket_name_prefix}-${each.value.bucket_name_suffix}-s3-user/"
+  ssm_base_path       = "/${local.bucket_name_prefix}-s3-user/"
   cors_configuration  = each.value.cors_configuration
   block_public_acls   = each.value.block_public_acls != null ? each.value.block_public_acls : true
   block_public_policy = each.value.block_public_policy != null ? each.value.block_public_policy : true
   ignore_public_acls  = each.value.ignore_public_acls != null ? each.value.ignore_public_acls : true
   logging = ({
     bucket_name = coalesce(each.value.logging_bucket_name, local.logging_bucket_name)
-    prefix      = "s3accesslogs/${local.bucket_name_prefix}-${each.value.bucket_name_suffix}/"
+    prefix      = "s3accesslogs/${local.bucket_name_prefix}-${each.value.bucket_name_prefix}/"
   })
   restrict_public_buckets      = each.value.restrict_public_buckets != null ? each.value.restrict_public_buckets : true
   privileged_principal_arns    = each.value.privileged_principal_arns != null ? each.value.privileged_principal_arns : []
