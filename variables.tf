@@ -16,11 +16,6 @@ variable "environment" {
   description = "Environment in which resources are deployed."
 }
 
-variable "shared_dev_account" {
-  type        = bool
-  description = "use for IE dev accounts that also host reg-test/perf-test"
-  default     = false
-}
 
 ################################################################################
 # Bucket Attributes
@@ -50,7 +45,7 @@ variable "bucket_configuration" {
     privileged_principal_arns    = optional(list(map(list(string))))
     privileged_principal_actions = optional(list(string))
   }))
-  description = "Values needed for the creation of a new S3 bucket. For the value of the argument 'bucket_name_suffix' it should be a value that has the service name and the purpose of that bucket."
+  description = "Values needed for the creation of a new S3 bucket. For the value of the argument 'bucket_name_prefix' it should be a value that has the service name and the purpose of that bucket."
   default = [{
     app                     = ""
     bucket_name_prefix      = ""
