@@ -2,7 +2,7 @@
 # Provider variables
 ################################################################################
 
-variable "aws_region" {
+variable "region" {
   type        = string
   description = "AWS region to deploy to"
 }
@@ -16,14 +16,16 @@ variable "environment" {
   description = "Environment in which resources are deployed."
 }
 
-
+variable "app" {
+  type        = string
+  description = "Application name used in prefix"
+}
 ################################################################################
 # Bucket Attributes
 ################################################################################
 
 variable "bucket_configuration" {
   type = list(object({
-    app                     = string
     bucket_name_prefix      = string
     acl_type                = string
     create_s3_user          = bool
@@ -47,7 +49,6 @@ variable "bucket_configuration" {
   }))
   description = "Values needed for the creation of a new S3 bucket. For the value of the argument 'bucket_name_prefix' it should be a value that has the service name and the purpose of that bucket."
   default = [{
-    app                     = ""
     bucket_name_prefix      = ""
     acl_type                = "log-delivery-write"
     create_s3_user          = false
