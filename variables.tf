@@ -16,7 +16,7 @@ variable "environment" {
   description = "Environment in which resources are deployed."
 }
 
-variable "app" {
+variable "project_name" {
   type        = string
   description = "Application name used in prefix"
 }
