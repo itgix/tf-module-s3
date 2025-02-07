@@ -26,7 +26,7 @@ variable "project_name" {
 
 variable "bucket_configuration" {
   type = list(object({
-    bucket_name_suffix      = list(string)
+    bucket_name_suffix      = string
     acl_type                = string
     create_s3_user          = bool
     versioning_enabled      = bool
