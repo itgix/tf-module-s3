@@ -8,10 +8,10 @@
 #tfsec:ignore:aws-s3-no-public-buckets
 #tfsec:ignore:aws-s3-specify-public-access-block
 module "s3_bucket" {
-  for_each            = { for bucket in var.bucket_configuration : bucket.bucket_name_prefix => bucket }
+  for_each            = { for bucket in var.bucket_configuration : bucket.bucket_name_suffix => bucket }
   source              = "cloudposse/s3-bucket/aws"
   version             = "~> 3.1.2"
-  name                = "${local.bucket_name_prefix}"
+  name                = "${local.bucket_name_prefix}-${each.value.bucket_name_suffix}"
   acl                 = each.value.acl_type
   user_enabled        = each.value.create_s3_user
   versioning_enabled  = each.value.versioning_enabled 
