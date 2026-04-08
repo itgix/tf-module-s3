@@ -24,4 +24,5 @@ module "s3_bucket" {
   restrict_public_buckets      = each.value.restrict_public_buckets != null ? each.value.restrict_public_buckets : true
   privileged_principal_arns    = each.value.privileged_principal_arns != null ? each.value.privileged_principal_arns : []
   privileged_principal_actions = each.value.privileged_principal_actions != null ? each.value.privileged_principal_actions : []
+  source_policy_documents      = each.value.source_policy_documents != null ? each.value.source_policy_documents : []
 }
